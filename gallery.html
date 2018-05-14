@@ -3,7 +3,25 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!-->
+
+<?php
+
+$db_host="mysql.hostinger.es";
+$db_nombre="u583853007_vet";
+$db_usuario="u583853007_vets";
+$db_contra="12345678";
+
+ $conn = new mysqli($db_host,$db_usuario,$db_contra ,$db_nombre);
+
+ if(mysqli_connect_errno())
+ {
+	echo "error de conexion a la BBDD";
+	exit();
+ }
+?>
+
+	<html class="no-js"> <!--<![endif]-->
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -97,9 +115,42 @@
 				<div class="col-md-8 col-md-offset-2 text-center">
 					<div class="display-t">
 						<div class="display-tc animate-box" data-animate-effect="fadeIn">
-							<h1>VetApp</h1>
-							<p><a href="#" class="btn btn-default btn-sm">Inicia Sesion</a></p>
-							<p><a href="#" class="btn btn-default btn-sm">Registrate</a></p>
+
+							<table>
+							    <thead>
+							        <tr>
+							            <th>Name </th>
+							            <th>Type </th>
+							            <th>Description </th>
+													<th>
+														Telefono
+													</th>
+													<th>
+														Ciudad
+													</th>
+													<th>
+														Pais
+													</th>
+							        </tr>
+							    </thead>
+
+									<tbody>
+			 <!--Use a while loop to make a table row for every DB row-->
+			 					<?php
+								$query="SELECT * FROM Adopciones";
+    						$resultados=mysqli_query($conn,$query);
+								if($resultado-> num_rows > 0)
+								{
+									while ($row = resultados-> fetch_assoc())
+									{
+										echo "<tr><td>". $row["id"] .-55-
+									}
+								}
+								?>
+	 								</tbody>
+								</table>
+
+
 						</div>
 					</div>
 				</div>

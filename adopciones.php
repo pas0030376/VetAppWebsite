@@ -4,6 +4,8 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
+
+
 	<html class="no-js"> <!--<![endif]-->
 	<head>
 	<meta charset="utf-8">
@@ -69,6 +71,21 @@
 	</head>
 	<body>
 
+    <?php
+
+    $db_host="mysql.hostinger.es";
+    $db_nombre="u583853007_vet";
+    $db_usuario="u583853007_vets";
+    $db_contra="12345678";
+
+     $conn = new mysqli($db_host,$db_usuario,$db_contra ,$db_nombre);
+
+     if(mysqli_connect_errno()){
+     		echo "error de conexion a la BBDD";
+     		exit();
+     	}
+    ?>
+
 	<div class="fh5co-loader"></div>
 
 	<div id="page">
@@ -99,9 +116,44 @@
 					<div class="display-t">
 						<div class="display-tc animate-box" data-animate-effect="fadeIn">
 
-<h1>VetApp</h1>
-<p><a href="#" class="btn btn-default btn-sm">Inicia Sesion</a></p>
-<p><a href="#" class="btn btn-default btn-sm">Registrate</a></p>
+              <table>
+                      <thead>
+                          <tr>
+                              <th>Name </th>
+                              <th>Type </th>
+                              <th>Description </th>
+                              <th>
+                                Telefono
+                              </th>
+                              <th>
+                                Ciudad
+                              </th>
+                              <th>
+                                Pais
+                              </th>
+                          </tr>
+                      </thead>
+
+
+			 					<?php
+
+                $query="SELECT * FROM Adopciones";
+                $resultados=mysql_query($query,$conn);
+                if(!resultados)
+                echo "<div display='none'><script type='text/javascript'>console.dir("error:no se pudo realizar");</script></div>";
+                while($fila=mysqli_fetch_assoc($resultados))
+                {
+                  echo '<tr>';
+                  echo '<td>' . $fila['tipoAnimal'] . '</td><td>' . $fila['nombreAnimal'] . '</td>';
+                  echo '</tr>';
+                }
+                echo '</table>';
+                mysql_close($conn);
+              ?>
+
+
+
+
 						</div>
 					</div>
 				</div>

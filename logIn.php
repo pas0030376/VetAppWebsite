@@ -4,6 +4,9 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
+
+
+
 	<html class="no-js"> <!--<![endif]-->
 	<head>
 	<meta charset="utf-8">
@@ -68,6 +71,25 @@
 
 	</head>
 	<body>
+    <?php
+
+    $username="justine";
+    $password="qwerty";
+
+    $db_host="mysql.hostinger.es";
+    $db_nombre="u583853007_vet";
+    $db_usuario="u583853007_vets";
+    $db_contra="12345678";
+
+    $conn = new mysqli_connect($db_host,$db_usuario,$db_contra ,$db_nombre);
+    echo '<script type='text/javascript'>alert("'.$username.'");</script>';
+     if(mysqli_connect_errno()){
+     		echo "<div display='none'><script type='text/javascript'>console.dir("error de conexion a la BBDD");</script></div>";
+        exit();
+     	}
+
+    ?>
+
 
 	<div class="fh5co-loader"></div>
 
@@ -99,10 +121,21 @@
 					<div class="display-t">
 						<div class="display-tc animate-box" data-animate-effect="fadeIn">
 
-<h1>VetApp</h1>
-<p><a href="#" class="btn btn-default btn-sm">Inicia Sesion</a></p>
-<p><a href="#" class="btn btn-default btn-sm">Registrate</a></p>
-						</div>
+			 					<?php
+
+
+                mysqli_select_db($conn,$db_nombre)or die("no se encuentra la BBDD");
+
+                $query="select username, password from users where username='$username'and password='$password'";
+                $resultados=mysqli_query($conn,$query);
+
+                if (mysqli_num_rows($resultados)!=0):?>
+                   <h1>klasjakjdkasjdklsajdkjfk</h1>
+                 <?php endif; ?>
+
+
+
+          	</div>
 					</div>
 				</div>
 			</div>
